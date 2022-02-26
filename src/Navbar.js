@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { NavBar } from "./Styled-components.js";
 
 import { links } from "./data.js";
-const Navbar = ({ activeNavItems, setActiveNavItems }) => {
+const Navbar = ({ current, setCurrent }) => {
   console.log("rendered");
 
   const navEl = useRef(null);
@@ -22,7 +22,7 @@ const Navbar = ({ activeNavItems, setActiveNavItems }) => {
       <ul>
         {links.map(({ url, id, text }) => {
           return (
-            <li className={activeNavItems[text] ? "active" : null}>
+            <li className={text === current ? "active" : null}>
               <a href={url} key={id} onClick={handleClick}>
                 {text}
               </a>

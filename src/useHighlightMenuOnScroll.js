@@ -1,12 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 
 export function useHighlightMenuOnScroll() {
-  const [activeNavItems, setActiveNavItems] = useState({
-    home: true,
-    about: false,
-    contact: false,
-    projects: false,
-  });
+  const [current, setCurrent] = useState("home");
 
   const highLightRefs = useRef([]);
 
@@ -17,21 +12,15 @@ export function useHighlightMenuOnScroll() {
   };
 
   const handleScroll = (e) => {
-    let current = "";
+    let activeElement = "";
     highLightRefs.current.forEach((element) => {
       const top = element.offsetTop;
       const height = element.offsetHeight;
       if (window.scrollY >= top - height / 2 && window.scrollY < top + height) {
-        current = element.getAttribute("id");
-        console.log(current);
+        activeElement = element.getAttribute("id");
+        setCurrent(activeElement);
       }
     });
-    for (var item in activeNavItems) {
-      // activeNavItems[item] = false;
-      setActiveNavItems((prev) => {
-        return { ...prev, [item]: false, [current]: true };
-      });
-    }
   };
   useEffect(() => {
     document.addEventListener("scroll", handleScroll);
@@ -40,5 +29,5 @@ export function useHighlightMenuOnScroll() {
     };
   }, []);
 
-  return [activeNavItems, setActiveNavItems, highLightRefs, addtoRefs];
+  return [current, setCurrent, highLightRefs, addtoRefs];
 }

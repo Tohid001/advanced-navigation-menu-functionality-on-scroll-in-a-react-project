@@ -18,7 +18,7 @@ export const NavBar = styled.nav`
         cursor: pointer;
         display: inline-block;
         padding: 15px;
-        transition: all 0.5s ease-in-out;
+        transition: all 0.5s ease;
         &:hover {
           font-weight: bold;
         }
@@ -32,7 +32,7 @@ export const NavBar = styled.nav`
         height: 5px;
         border-radius: 40px;
         background-color: red;
-        transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease;
         transform-origin: left;
         transform: scaleX(0);
       }

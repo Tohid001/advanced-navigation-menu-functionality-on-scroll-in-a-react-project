@@ -5,15 +5,12 @@ import { useHighlightMenuOnScroll } from "./useHighlightMenuOnScroll";
 import Navbar from "./Navbar.js";
 
 function App() {
-  const [activeNavItems, setActiveNavItems, highLightRefs, addtoRefs] =
+  const [current, setCurrent, highLightRefs, addtoRefs] =
     useHighlightMenuOnScroll();
 
   return (
     <main>
-      <Navbar
-        activeNavItems={activeNavItems}
-        setActiveNavItems={setActiveNavItems}
-      />
+      <Navbar current={current} setCurrent={setCurrent} />
       {links.map((item, index) => (
         <StyledSection
           ref={addtoRefs}
