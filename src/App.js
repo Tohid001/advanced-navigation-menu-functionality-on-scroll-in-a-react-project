@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import { StyledSection } from "./Styled-components";
+import { links } from "./data";
+import { useHighlightMenuOnScroll } from "./useHighlightMenuOnScroll";
+import Navbar from "./Navbar.js";
 
 function App() {
+  const [activeNavItems, setActiveNavItems, highLightRefs, addtoRefs] =
+    useHighlightMenuOnScroll();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <main>
+      <Navbar
+        activeNavItems={activeNavItems}
+        setActiveNavItems={setActiveNavItems}
+      />
+      {links.map((item, index) => (
+        <StyledSection
+          ref={addtoRefs}
+          key={`${item}-${index}`}
+          id={item.text}
+          section={item.text}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <h1>{item.text}</h1>
+        </StyledSection>
+      ))}
+    </main>
   );
 }
 
