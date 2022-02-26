@@ -20,10 +20,13 @@ const Navbar = ({ current, setCurrent }) => {
   return (
     <NavBar ref={navEl}>
       <ul>
-        {links.map(({ url, id, text }) => {
+        {links.map(({ url, id, text }, index) => {
           return (
-            <li className={text === current ? "active" : null}>
-              <a href={url} key={id} onClick={handleClick}>
+            <li
+              className={text === current ? "active" : null}
+              key={`${text}-${index}`}
+            >
+              <a href={url} onClick={handleClick}>
                 {text}
               </a>
             </li>

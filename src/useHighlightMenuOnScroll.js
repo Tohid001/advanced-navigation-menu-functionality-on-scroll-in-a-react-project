@@ -11,23 +11,23 @@ export function useHighlightMenuOnScroll() {
     }
   };
 
-  const handleScroll = (e) => {
-    let activeElement = "";
-    highLightRefs.current.forEach((element) => {
-      const top = element.offsetTop;
-      const height = element.offsetHeight;
-      if (window.scrollY >= top - height / 2 && window.scrollY < top + height) {
-        activeElement = element.getAttribute("id");
-        setCurrent(activeElement);
-      }
-    });
-  };
   useEffect(() => {
-    document.addEventListener("scroll", handleScroll);
-    return () => {
-      document.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+    let activeElement;
+    const options = { threshold: 0.5 };
+    let observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          activeElement = entry.target.id;
+          if (!(current === activeElement)) {
+            setCurrent(activeElement);
+          }
+        }
+      });
+    }, options);
+    highLightRefs.current.forEach((element, index) => {
+      observer.observe(element);
+    });
+  }, [current, highLightRefs.current]);
 
   return [current, setCurrent, highLightRefs, addtoRefs];
 }
