@@ -32,7 +32,7 @@ export const NavBar = styled.nav`
         height: 5px;
         border-radius: 40px;
         background-color: red;
-        transition: all 0.5s ease-in-out;
+        transition: all 0.3s ease-in-out;
         transform-origin: left;
         transform: scaleX(0);
       }
@@ -45,7 +45,7 @@ export const NavBar = styled.nav`
     }
 
     &:before {
-      transform: scaleX(0.7);
+      transform: scaleX(1);
     }
   }
 `;
