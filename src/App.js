@@ -12,11 +12,14 @@ function App() {
     <main>
       <Navbar current={current} setCurrent={setCurrent} />
       {links.map(({ Component, text }, index) => (
-        <div ref={addtoRefs} key={`${text}-${index}`} id={text}>
-          <Component section={text}>
-            <h1>{text}</h1>
-          </Component>
-        </div>
+        <Component
+          ref={addtoRefs}
+          key={`${text}-${index}`}
+          id={text}
+          section={text}
+        >
+          <h1>{text}</h1>
+        </Component>
       ))}
     </main>
   );
