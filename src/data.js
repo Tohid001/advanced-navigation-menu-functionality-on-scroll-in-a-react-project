@@ -15,12 +15,25 @@ export const links = [
   },
   {
     id: 3,
-    text: "projects",
-    url: "#projects",
+    text: "education",
+    url: "#education",
     Component: StyledSection,
   },
   {
     id: 4,
+    text: "skills",
+    url: "#skills",
+    Component: StyledSection,
+  },
+  {
+    id: 5,
+    text: "projects",
+    url: "#projects",
+    Component: StyledSection,
+  },
+
+  {
+    id: 6,
     text: "contact",
     url: "#contact",
     Component: StyledSection,

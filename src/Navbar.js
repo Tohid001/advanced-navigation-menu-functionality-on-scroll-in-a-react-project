@@ -1,11 +1,21 @@
-import React, { useRef, useState } from "react";
-import { NavBar } from "./Styled-components.js";
+import React, { useState, useRef, useEffect } from "react";
+import { NavBar, ProgressBar } from "./Styled-components.js";
 
 import { links } from "./data.js";
 const Navbar = ({ current, setCurrent }) => {
   console.log("rendered");
 
+  const progressedSections = useRef([]);
   const navEl = useRef(null);
+
+  useEffect(() => {
+    console.log("effect");
+    if (!progressedSections.current.includes(current)) {
+      progressedSections.current = [...progressedSections.current, current];
+    }
+    console.log(progressedSections.current);
+  }, [current]);
+
   const handleClick = (e) => {
     e.preventDefault();
     // console.log(navEl.current.offsetHeight);
@@ -33,6 +43,10 @@ const Navbar = ({ current, setCurrent }) => {
           );
         })}
       </ul>
+      <ProgressBar
+        fraction={progressedSections.current.length / links.length}
+      />
+      <div>{progressedSections.current}</div>
     </NavBar>
   );
 };
