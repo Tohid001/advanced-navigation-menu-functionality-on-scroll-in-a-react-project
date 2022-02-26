@@ -18,7 +18,7 @@ export const NavBar = styled.nav`
         cursor: pointer;
         display: inline-block;
         padding: 15px;
-        transition: all 0.5s ease;
+        /* transition: all 1s ease; */
         &:hover {
           font-weight: bold;
         }
@@ -41,7 +41,7 @@ export const NavBar = styled.nav`
 
   .active {
     & a {
-      /* font-weight: bold; */
+      font-weight: bold;
     }
 
     &:before {
