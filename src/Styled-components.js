@@ -50,7 +50,7 @@ export const NavBar = styled.nav`
   }
 `;
 
-export const StyledSection = styled.div`
+export const StyledSection = styled.section`
   display: flex;
   justify-content: center;
   width: 100%;
