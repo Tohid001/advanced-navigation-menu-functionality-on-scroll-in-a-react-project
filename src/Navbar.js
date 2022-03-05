@@ -5,16 +5,16 @@ import { links } from "./data.js";
 const Navbar = ({ current, setCurrent }) => {
   console.log("rendered");
 
-  const progressedSections = useRef([]);
+  // const progressedSections = useRef([]);
   const navEl = useRef(null);
 
-  useEffect(() => {
-    console.log("effect");
-    if (!progressedSections.current.includes(current)) {
-      progressedSections.current = [...progressedSections.current, current];
-    }
-    console.log(progressedSections.current);
-  }, [current]);
+  // useEffect(() => {
+  //   console.log("effect");
+  //   if (!progressedSections.current.includes(current)) {
+  //     progressedSections.current = [...progressedSections.current, current];
+  //   }
+  //   console.log(progressedSections.current);
+  // }, [current]);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -43,10 +43,10 @@ const Navbar = ({ current, setCurrent }) => {
           );
         })}
       </ul>
-      <ProgressBar
-        fraction={progressedSections.current.length / links.length}
-      />
-      <div>{progressedSections.current}</div>
+      {/* <ProgressBar
+      // fraction={progressedSections.current.length / links.length}
+      /> */}
+      {/* <div>{progressedSections.current}</div> */}
     </NavBar>
   );
 };

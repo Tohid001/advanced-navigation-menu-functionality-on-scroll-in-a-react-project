@@ -4,7 +4,8 @@ export function useHighlightMenuOnScroll() {
   const [current, setCurrent] = useState("home");
 
   const highLightRefs = useRef([]);
-
+  // console.log(highLightRefs.current);
+  console.log("hook");
   const addtoRefs = (el) => {
     if (el && !highLightRefs.current.includes(el)) {
       highLightRefs.current.push(el);
@@ -18,16 +19,14 @@ export function useHighlightMenuOnScroll() {
       entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
           activeElement = entry.target.id;
-          if (!(current === activeElement)) {
-            setCurrent(activeElement);
-          }
+          setCurrent(activeElement);
         }
       });
     }, options);
     highLightRefs.current.forEach((element, index) => {
       observer.observe(element);
     });
-  }, [current, highLightRefs.current]);
+  }, []);
 
   return [current, setCurrent, highLightRefs, addtoRefs];
 }
