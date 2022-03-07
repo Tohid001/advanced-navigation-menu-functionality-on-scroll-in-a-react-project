@@ -24,7 +24,14 @@ export const useScrollspy = (elements, options) => {
         console.log("current", indexOfElementIntersecting);
 
         // set this index to the state
-        setCurrentIntersectingElementIndex(indexOfElementIntersecting);
+        if (
+          //logic for eliminating the shaky effect
+          !(
+            indexOfElementIntersecting === 0 &&
+            currentIntersectingElementIndex > 0
+          )
+        )
+          setCurrentIntersectingElementIndex(indexOfElementIntersecting);
       },
       {
         root: (options && options.root) || null,

@@ -7,7 +7,7 @@ const Navbar = () => {
   console.log("nav rendered");
   const [sections, setSections] = useState([]);
   const [currentIntersectingElementIndex] = useScrollspy(sections, {
-    offset: 200,
+    offset: 400,
   });
 
   useEffect(() => {
