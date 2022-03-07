@@ -42,6 +42,7 @@ export const NavBar = styled.nav`
   .active {
     & a {
       font-weight: bold;
+      transform: scaleX(1.2);
     }
 
     &:before {

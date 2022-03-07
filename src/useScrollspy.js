@@ -3,7 +3,7 @@ export const useScrollspy = (elements, options) => {
   const [currentIntersectingElementIndex, setCurrentIntersectingElementIndex] =
     useState(-1);
 
-  console.log("root", options.root);
+  console.log("hook", currentIntersectingElementIndex);
 
   const rootMargin = `-${(options && options.offset) || 0}px 0px 0px 0px`;
 
@@ -16,7 +16,7 @@ export const useScrollspy = (elements, options) => {
 
     observer.current = new IntersectionObserver(
       (entries) => {
-        // console.log(entries);
+        console.log(entries);
         // find the index of the section that is currently intersecting
         const indexOfElementIntersecting = entries.findIndex((entry) => {
           return entry.intersectionRatio > 0;
@@ -41,7 +41,7 @@ export const useScrollspy = (elements, options) => {
     );
 
     return () => currentObserver.disconnect();
-  }, [elements, options, rootMargin]);
+  }, [elements, options, currentIntersectingElementIndex]);
 
   return [currentIntersectingElementIndex];
 };

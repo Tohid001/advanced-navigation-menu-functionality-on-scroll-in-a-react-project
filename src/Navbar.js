@@ -1,24 +1,28 @@
 import React, { useState, useRef, useEffect } from "react";
 import { NavBar, ProgressBar } from "./Styled-components.js";
+import { useScrollspy } from "./useScrollspy.js";
 
 import { links } from "./data.js";
-const Navbar = ({ current, setCurrent }) => {
-  console.log("rendered");
+const Navbar = () => {
+  console.log("nav rendered");
+  const [sections, setSections] = useState([]);
+  const [currentIntersectingElementIndex] = useScrollspy(sections, {
+    offset: 200,
+  });
 
-  // const progressedSections = useRef([]);
+  useEffect(() => {
+    const sectionElements = links.map(({ text }) =>
+      document.querySelector(`section[id="${text}"]`)
+    );
+
+    setSections(sectionElements);
+  }, []);
+
   const navEl = useRef(null);
-
-  // useEffect(() => {
-  //   console.log("effect");
-  //   if (!progressedSections.current.includes(current)) {
-  //     progressedSections.current = [...progressedSections.current, current];
-  //   }
-  //   console.log(progressedSections.current);
-  // }, [current]);
 
   const handleClick = (e) => {
     e.preventDefault();
-    // console.log(navEl.current.offsetHeight);
+
     const target = e.target.getAttribute("href");
     const location = document.querySelector(target).offsetTop;
 
@@ -33,7 +37,9 @@ const Navbar = ({ current, setCurrent }) => {
         {links.map(({ url, id, text }, index) => {
           return (
             <li
-              className={text === current ? "active" : null}
+              className={
+                index === currentIntersectingElementIndex ? "active" : null
+              }
               key={`${text}-${index}`}
             >
               <a href={url} onClick={handleClick}>
@@ -43,10 +49,6 @@ const Navbar = ({ current, setCurrent }) => {
           );
         })}
       </ul>
-      {/* <ProgressBar
-      // fraction={progressedSections.current.length / links.length}
-      /> */}
-      {/* <div>{progressedSections.current}</div> */}
     </NavBar>
   );
 };
